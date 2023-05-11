@@ -1,13 +1,16 @@
 import { NextRequest, NextResponse } from "next/server"
 import postgres from "postgres";
-export async function GET(request: Request) {
+
+export async function POST(request: Request) {
   const conn = postgres({
     ssl: require,
   });
 
   try {
     const req = await request.json();
-    const querySQL= `SELECT * FROM books` + (req.booktype ? ` WHERE booktype='${req.booktype}'` : '') +  (req.limit ? ` LIMIT COALESCE(${req.limit}, 0);`:'');
+    
+    
+    const querySQL= `SELECT * FROM books` + (req.booktype? ` WHERE booktype='${req.booktype}'` : '') +  (req.limit ? ` LIMIT COALESCE(${req.limit}, 0);`:'');
     
       const result = await conn.unsafe(querySQL)
    
@@ -20,11 +23,10 @@ export async function GET(request: Request) {
     console.error(e);
     return new Response(`${e}`, { status: 400 });
   }
- 
 }
 
 
-export async function POST(request: Request) {
+export async function GET(request: Request) {
   const req = await request.json();
   if (req.name){
     return NextResponse.json({
