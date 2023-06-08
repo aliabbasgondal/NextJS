@@ -26,16 +26,28 @@ export async function POST(request: Request) {
 }
 
 
-export async function GET(request: Request) {
-  const req = await request.json();
-  if (req.name){
-    return NextResponse.json({
-      To: "Zia",
-      Messsage: "All well here",
-      RequestType:"pOST"
-    });
+export async function GET(request: NextRequest) {
+  const conn = postgres({
+    ssl: require,
+  });
+
+  try {
+    
+    
+    
+    const querySQL= `SELECT * FROM books` + (request.nextUrl.searchParams.get('type') ? ` WHERE booktype='${request.nextUrl.searchParams.get('type')}'` : '') + (request.nextUrl.searchParams.get('limit') ? ` LIMIT COALESCE(${request.nextUrl.searchParams.get('limit')}, 0);`:'');
+    console.log(querySQL);
+      const result = await conn.unsafe(querySQL)
+   
+    if (result.length === 0) {
+      return new Response("No data found", { status: 404 });
+    }
+  
+    return new NextResponse(JSON.stringify(result));
+  } catch (e) {
+    console.error(e);
+    return new Response(`${e}`, { status: 400 });
   }
-  else{return new Response('Please include your name in t the post reqeust')}
   
 }
 export async function PUT(request: Request) {

@@ -1,5 +1,30 @@
 import { NextRequest, NextResponse } from "next/server"
 import postgres from "postgres";
+export async function GET(request:Request) {
+  const conn = postgres({
+    ssl: require,
+  });
+  try{
+    const querySQL = `SELECT c.bookname, c.author, c.isbn, b.qty, c.price, a.date_added, a.client_id
+    FROM orders a join order_detail b on a.order_id = b.order_id join books c on c.id=b.book_id`;
+    const result = await conn.unsafe(querySQL);
+   
+      if (result.length === 0) {
+        return new Response("No data found", { status: 404 });
+      }
+    
+          
+    else{
+      return new NextResponse(JSON.stringify(result));
+
+    }
+  }
+  catch(e){
+    console.error(e);
+  return new Response(`${e}`, { status: 400 });
+  }
+  
+}
 export async function POST(request: Request) {
   const conn = postgres({
     ssl: require,
