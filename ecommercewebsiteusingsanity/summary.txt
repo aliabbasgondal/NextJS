@@ -1,0 +1,64 @@
+ {/*
+                <div className="flex flex-col justify-between w-['80%']">
+
+                    <Image width={75} height={200}
+                    src={urlForImage(data.FooterLogo).url()} alt="site footer Logo"></Image>
+               
+               {
+                 parse( toHTML(data.detail, {
+                    components: {
+                      /* optional object of custom components to use */
+                    },
+                  }))
+                
+               }
+                <div className="flex gap-1">
+                {
+                    data.socialMedia.map((socialMediaItem:any,index:number)=>(
+                        <Link href={socialMediaItem.link} key={index}>
+                            {socialMediaItem.name}
+                        </Link>
+                    ))
+                }
+                </div>
+                </div>
+                
+                    
+                <div className="w-['20%']">
+                    <h3>
+                        Company
+                    </h3>
+                    {
+                        arrayItem.map((items:any)=>(
+                            <Link href={items.Title} key={items.Title}>
+                                {items.Title}
+                            </Link>
+                        ))    
+                    }
+                </div>
+                
+                
+                    
+                <div className="w-['20%']">
+                    <h3>
+                        Support
+                    </h3>
+                    {
+                        arrayItems.map((items:any)=>(
+                            <Link href={items.Title} key={items.Title}>
+                                {items.Title}
+                            </Link>
+                        ))    
+                    }
+                </div>
+                <div className="w-['20%']">
+                    <h3>
+                        
+                    Contact
+                    </h3>
+                   <Link href="/contact" >
+                               Contact
+                            </Link>
+                      
+                </div>
+            </div>*/}

@@ -1,0 +1,20 @@
+import { type SchemaTypeDefinition } from 'sanity'
+import product from './product'
+import { category } from './category'
+import { subCategory } from './subcategory'
+import { pcolor } from './color'
+import { psize } from './size'
+import innerPages from './infoPages'
+import { socialIcons } from './socialIcons'
+import footer from './footer'
+import contact from './contact'
+import newsletter from './newsletter'
+import promotionalProducts from './promotionalProducts'
+import homePageBanner from './homePageBanner'
+import homePagePromotion from './homePagePromotion'
+import homePage from './homePage'
+import header from './header'
+import homagePagePromotionalArea from './homagePagePromotionalArea'
+export const schema: { types: SchemaTypeDefinition[] } = {
+  types: [header,product,category,subCategory,pcolor,psize,innerPages, socialIcons, footer,contact,newsletter, homePage, homePageBanner,homagePagePromotionalArea, homePagePromotion,promotionalProducts],
+}
